@@ -6,9 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <input id="inp1" type="text" placeholder="Enter number 1">
+    <input id="inp2" type="text" placeholder="Enter number 2">
+    <br>
+    <button onclick="add()">Add</button>
+    <button onclick="sub()">Subtract</button>
+    <button onclick="multi()">Multiply</button>
+    <button onclick="divi()">Divide</button>
 </body>
 <script type="text/javascript">
-    window.alert("i am a alert")
+    let input1 = document.getElementById("inp1")
+    let input2 = document.getElementById("inp2")
+
+    function add(){
+        alert(+input1.value+ +input2.value)
+    }
+    function sub(){
+        alert(+input1.value- +input2.value)
+    }
+    function multi(){
+        alert(+input1.value* +input2.value)
+    }
+    function divi(){
+        alert(+input1.value/ +input2.value)
+    }
 </script>
 </html>
