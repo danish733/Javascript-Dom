@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revision Dom-1</title>
+</head>
+<body>
+    <input type="text" id="myInput">
+    <button onclick="myButton()">Submit</button>
+    <br>
+    <h2 id="display">Entered value:</h2>
+
+</body>
+<script>
+    let inp = document.getElementById("myInput")
+    let display = document.getElementById("display")
+    function myButton(){
+        display.innerText += inp.value;
+        alert(display.innerText);
+    }
+</script>
+</html>
