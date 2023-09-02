@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        #outer {
+            border: 1px solid whitesmoke;
+            width: 27%;
+            height: 600px;
+            margin: auto;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+
+        #one {
+            width: 75%;
+            height: 12%;
+            margin: auto;
+            margin-top: 13%;
+            margin-bottom: 5%;
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            background-color: #FFDDCC;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #outer > div + div {
+            width: 75%;
+            margin: auto;
+            height: 65%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4% 5%;
+            text-align: center;
+        }
+
+        #outer > div + div > div {
+            border-radius: 10px;
+            height: 90%;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .colour {
+            background-color: black;
+            color: white;
+        }
+
+        #h1 {
+            text-align: center;
+            color: green;
+            font-size: 325%;
+        }
+        .keys > button{
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+            border: none;
+            background-color: white;
+        }
+        .operator > button{
+            background-color: black;
+            color: white;
+            border: none;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="h1">Masai Calculator</h1>
+    <div id="outer">
+        <div id="one"><h1 id="display">Hello</h1></div>
+        <div>
+            <div class="keys">
+                <button><h1>1</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>2</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>3</h1></button>
+            </div>
+            <div class="colour operator">
+                <button><h1>+</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>4</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>5</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>6</h1></button>
+            </div>
+            <div class="colour operator">
+                <button><h1>-</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>7</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>8</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>9</h1></button>
+            </div>
+            <div class="colour operator">
+                <button><h1>*</h1></button>
+            </div>
+            <div id="clear" style="background-color: red;color: white;">
+                <button style="background-color: red;color: white;border: none;padding-top: 7px;"><h1>C</h1></button>
+            </div>
+            <div class="keys">
+                <button><h1>0</h1></button>
+            </div>
+            <div id="equal" style="background-color: #FFC436;">
+                <button style="background-color: #FFC436;border: none;margin-top: 7px;"><h1>=</h1></button>
+            </div>
+            <div class="colour operator">
+                <button><h1>/</h1></button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let keyPadButton = document.querySelectorAll(".keys");
+    let operatorButton = document.querySelectorAll(".operator");
+    let clear = document.getElementById("clear");
+    let display = document.getElementById("display");
+    let equal = document.getElementById("equal")
+
+    let firstNo = "";
+    let secondNo = "";
+    let operator = "";
+    let IsFirstNo = true;
+
+    equal.addEventListener("click", function () {
+        if (operator && secondNo !== "") {
+            try {
+                let result = calculate(firstNo, secondNo, operator);
+                display.innerText = result;
+                firstNo = result.toString();
+                secondNo = "";
+                IsFirstNo = true;
+            } 
+            catch (error) {
+                display.innerText = "Error";
+            }
+        }
+    })
+
+    clear.addEventListener("click", function () {
+        firstNo = "";
+        secondNo = "";
+        operator = "";
+        display.innerText = "";
+        IsFirstNo = true;
+    })
+
+    for (let i = 0; i < keyPadButton.length; i++) {
+        keyPadButton[i].addEventListener("click", function () {
+            if (IsFirstNo) {
+                firstNo += keyPadButton[i].innerText;
+                display.innerText = firstNo;
+            } else {
+                secondNo += keyPadButton[i].innerText;
+                display.innerText = secondNo;
+            }
+        })
+    }
+    
+    for (let i = 0; i < operatorButton.length; i++) {
+        operatorButton[i].addEventListener("click", function () {
+            operator = operatorButton[i].innerText;
+            IsFirstNo = false;
+        });
+    }
+    
+    function calculate(firstNo, secondNo, operator) {
+        const num1 = Number(firstNo);
+        const num2 = Number(secondNo);
+
+        switch (operator) {
+            case "+":
+                return num1 + num2;
+            case "-":
+                return num1 - num2;
+            case "*":
+                return num1 * num2;
+            case "/":
+                if (num2 === 0) {
+                    throw new Error;
+                }
+                return num1 / num2;
+            default:
+                return 0;
+        }
+    }
+</script>
+</html>
