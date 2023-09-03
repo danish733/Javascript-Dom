@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        #minmax{
+            width: 25%;
+            height: 60px;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+        }
+        #minmax > div{
+            width: 25%;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #minmax > div > h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 25px;
+        }
+
+        #minmax_name{
+            width: 22%;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+        }
+        #minmax_name p{
+            font-size: 20px;
+            font-weight: 600;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 2px;
+            padding-left: 12px;
+            padding-right: 3px;
+        }
+        h3{
+            padding-left: 720px;
+            font-weight: 500;
+            font-size: 30px;
+            margin-top: 1px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #score_box{
+            display: flex;
+            margin: auto;
+            width: 12%;
+            border: 2px solid black;
+            margin-top: -25px;
+            justify-content: center;
+            background-color: gray;
+        }
+        #keypad{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            width: 12%;
+            height: 300px;
+            margin: auto;
+            margin-top: 15px;
+            padding-left: 10px;
+        }
+        #keypad div button{
+            border: 2px solid rgb(0, 0, 0);
+            width: 80%;
+            height: 75%;
+            background-color: orange;
+        }
+        #keypad div button h1{
+            margin-top: 12px;
+        }
+        #enter{
+            text-align: center;
+            margin-top: 10px;
+        }
+        #enter button{
+            padding: 8px 60px;
+            font-size: 30px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="minmax">
+        <div id="min" style="background-color: red;"><h1>50</h1></div>
+        <div id="max" style="background-color: green;"><h1>100</h1></div>
+    </div>
+    <div id="minmax_name">
+        <p>MIN</p>
+        <p>Max</p>
+    </div>
+    <h3>score</h3>
+    <div id="score_box">
+        <h1>#</h1>
+    </div>
+    <div id="keypad">
+        <div><button style="background-color: green;"><h1>1</h1></button></div>
+        <div><button><h1>2</h1></button></div>
+        <div><button style="background-color: green;"><h1>3</h1></button></div>
+        <div><button><h1>4</h1></button></div>
+        <div><button><h1>5</h1></button></div>
+        <div><button><h1>6</h1></button></div>
+        <div><button style="background-color: green;"><h1>7</h1></button></div>
+        <div><button><h1>8</h1></button></div>
+        <div><button style="background-color: green;"><h1>9</h1></button></div>
+        <div style="visibility: hidden;"></div>
+        <div><button style="background-color: rgb(90, 10, 90);color: white;"><h1>0</h1></button></div>
+        <div style="visibility: hidden;"></div>
+    </div>
+    <div id="enter">
+        <button>Enter</button>
+    </div>
+</body>
+<script>
+    let min = document.getElementById("min");
+    let max = document.getElementById("max");
+    let score = document.querySelector("#score_box > h1");
+    let keyPad = document.querySelectorAll("#keypad button");
+    let enter = document.querySelector("#enter > button");
+    let btwn = document.querySelector("h3")
+
+    let scoreBag = "";
+
+    for (let i = 0; i < keyPad.length; i++) {
+        keyPad[i].addEventListener("click", function () {
+            scoreBag += keyPad[i].innerText;
+            score.innerText = scoreBag;
+        });
+    }
+
+    enter.addEventListener("click", function () {
+
+            let scoreInNum = Number(scoreBag);
+
+                let minScore = Number(min.innerText);
+                let maxScore = Number(max.innerText);
+
+                if (scoreInNum < minScore) {
+                    min.innerText = scoreInNum;
+                    min.style.fontSize = "25px"
+                    min.style.fontFamily = " Arial"
+                    min.style.fontWeight = "600"
+                } else if (scoreInNum > maxScore) {
+                    max.innerText = scoreInNum;
+                    max.style.fontSize = "25px"
+                    max.style.fontFamily = " Arial"
+                    max.style.fontWeight = "600"
+                }
+                
+                scoreBag = "";
+                score.innerText = " Enter New";
+
+            }
+    );
+</script>
+</html>>
