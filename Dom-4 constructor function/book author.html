@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book store</title>
+</head>
+<body>
+    <script>
+
+        function author(name,birthYear,nationality){
+            this.name=name
+            this.birthYear=birthYear
+            this.nationality=nationality
+
+            this.getAuthorInfo = function(){
+                console.log(`Name of the Author is "${this.name}"`)
+                console.log(`Birthyear of the Author is "${this.birthYear}"`)
+                console.log(`Nationality of the Author is "${this.nationality}"`)
+            }
+        }
+        function book(title,author,genre,price){
+            this.title=title
+            this.author=author
+            this.genre=genre
+            this.price=price
+
+            this.getBookInfo = function(){
+                console.log(`title of the book is "${this.title}"`)
+                console.log(`author of the book is "${this.author.name}"`)
+                console.log(`genre of the book is "${this.genre}"`)
+                console.log(`price of the book is "${this.price}"`)
+            }
+
+        }
+
+
+
+
+        let author1 = new author("Jhon Mandel ",1987,"American")
+        let author2 = new author("Vikram Seth", 1952, "indian")
+        let author3 = new author("wiliam hetch",1987,"British")
+
+
+        let book1 = new book("Station Eleven",author1,"love",500)
+        let book2 = new book("Titanic", author2, "romance", 210)
+        let book3 = new book("raibow",author3,"happiness",400)
+
+        book1.getBookInfo()
+        console.log("************")
+
+        author1.getAuthorInfo()
+    </script>
+</body>
+</html>
