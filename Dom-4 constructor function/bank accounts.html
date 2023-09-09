@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Account</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function bankAccount(accountNumber,name,type,balance){
+
+        this.accountNumber = accountNumber
+        this.name = name
+        this.type = type
+        this.balance = balance
+        this.active = true
+
+    }
+
+    // active method
+    bankAccount.prototype.isActive = function(){
+        if(this.balance>=1000){
+            this.active = true
+        }
+        else{
+            this.active = false
+        }
+    }
+
+    // deposit method
+    bankAccount.prototype.deposit = function(amount){
+        if(amount>0){
+            this.balance+=amount
+            console.log(`Deposited amount ${amount}. New updated balance is${this.balance}`)
+        }
+        else{
+            console.log(`Invalid Deposit amount`)
+        }
+    }
+
+    // withdraw method
+    bankAccount.prototype.withdraw = function(amount){
+        if(this.active==true && amount>0 && amount<=this.balance){
+            this.balance-= amount
+            console.log(`You withdraw ${amount}. Your new balance is ${this.balance}`)
+        }
+        else{
+            console.log(`Your account is inactive or insuffient balance`)
+        }
+    }
+
+    // check balance
+    bankAccount.prototype.checkBalance = function(){
+        console.log(`Your balance is ${this.balance}`)
+    }
+
+    // Total balance of all active accountNumber
+    function totalBalance(accounts){
+        let total = 0
+
+        for(let i of accounts){
+            if(i.active) total+=i.balance
+        }
+        console.log(total)
+    }
+
+    let user1 = new bankAccount(402417258575,"Danish reza","saving",1900)
+    let user2 = new bankAccount(402646545475,"spider man","saving",2900)
+    let user3 = new bankAccount(402556596565,"super man","saving",5300)
+    console.log(user1)
+
+    user1.isActive()
+    user1.deposit(500)
+    user1.withdraw(600)
+    user1.checkBalance()
+
+    let arr = [user1,user2,user3]
+    totalBalance(arr)
+
+    
+
+</script>
+</html>
