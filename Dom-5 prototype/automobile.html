@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>automobile</title>
+</head>
+<body>
+</body>
+<script>
+    // function1
+    function automobile(type,model,brand){
+        this.type = type
+        this.model = model
+        this.brand= brand
+    }
+    automobile.prototype.brake = function(){
+        console.log("Brake applied successfull")
+    }
+    automobile.prototype.accelerate = function(){
+        console.log("Accelerator is fine")
+    }
+
+
+    // function2
+    function fourwheeler(type,model,brand,year,cost){
+        automobile.call(this,type,model,brand)
+        this.year = year
+        this.cost = cost           
+    }
+    fourwheeler.prototype.fuel = function(){
+        console.log(`${this.model} Fuel is fine for now`)
+    }
+
+    // joint function1 and function2
+    Object.setPrototypeOf(fourwheeler.prototype,automobile.prototype)
+
+
+    let car1 = new fourwheeler("car","4series","Audi",2016,"1 crore+")
+    console.log(car1)
+    car1.fuel()
+    car1.brake()
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Game</title>
+</head>
+<body>
+    <script>
+        //   Function1
+        function vehicle(brand, model, speed, fuelType) {
+          this.brand = brand
+          this.model = model
+          this.speed = speed
+          this.fuelType = fuelType
+       }
+       vehicle.prototype.accelerate = function(increase){
+            this.speed+=increase
+            console.log(`speed increases to ${this.speed}`)
+       }
+       vehicle.prototype.brake = function(decrease){
+            this.speed-= decrease
+            console.log(`speed decrease to ${this.speed}`)
+       }
+       vehicle.prototype.refuel = function(){
+            console.log(`${this.brand} is refueling`)
+       }
+
+    //    function2
+       function car(brand, model, speed, fuelType,numberOfWheels){
+        vehicle.call(this,brand, model, speed, fuelType)
+        
+        this.numberOfWheels = numberOfWheels
+       }
+
+       car.prototype.honk = function(){
+        console.log("honking sound")
+       }
+
+    //    Function3
+       function airplane(brand, model, speed, fuelType,numberOfEngines,hasLandingGear){
+          vehicle.call(this,brand, model, speed, fuelType)
+          
+          this.numberOfEngines = numberOfEngines
+          this.hasLandingGear = hasLandingGear
+       }
+
+       airplane.prototype.takeOff = function(){
+        console.log("airoplane is taking off")
+       }
+
+    //    Adding All The Function
+       Object.setPrototypeOf(airplane.prototype,car.prototype,vehicle.prototype)
+       Object.setPrototypeOf(car.prototype,vehicle.prototype)
+
+
+    //    Apply for result Airplane
+       let airplane1 = new airplane("Indigo","Y34",500,"diesel",2,"yes")
+       console.log(airplane1)
+       airplane1.accelerate(200)
+       airplane1.brake(500)
+       airplane1.refuel()
+       airplane1.honk()
+       airplane1.takeOff()
+
+    //    Apply for result Car
+       let car1 = new car("Audi" ,"5a",100,"petrol",4 )
+       console.log(car1)
+       car1.accelerate(100)
+       car1.brake(80)
+       car1.refuel()
+       car1.honk()
+
+
+
+    </script>
+</body>
+</html>
