@@ -1,3 +1,146 @@
-body{
-    background-color: aqua;
+*{
+    margin: 0;padding: 0;box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif ;
+}
+html{
+    font-size: 62.5%;
+}
+#header{
+    padding: 0 4.8rem;
+    height: 10rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: beige;
+}
+#header img{
+    width: 8rem;
+}
+#navbar-list{
+    display: flex;
+    gap: 4.8rem;
+    list-style: none;
+}
+#navbar-list a:link,#navbar-list:visited{
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: 500;
+    color: black;
+    transition: all 0.3s;
+}
+#navbar-list a:hover,#navbar-list:active{
+    color: rgb(166, 221, 221);
+}
+.hero{
+    width: 100vw;
+    height: 20rem;
+}
+.hero img{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+#food-cart{
+    display: flex;
+    justify-content: space-around;
+}
+#food-list{
+    background-color: rgb(238, 246, 250);
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    
+}
+#food-list div{
+    width: 70%;
+    background-color: rgb(255, 255, 255);
+    margin-left: 3rem;
+    margin: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-top: 8rem;
+    padding-left: 1.8rem;
+    border-radius: 10px;
+    
+    
+    
+}
+#food-list div img{
+    width: 80%;
+    padding: 3rem;
+    align-items: center;
+    padding-left: 8rem;
+}
+#cart-list{
+    /* background-color: blue; */
+    width: 50%;
+    height: 200px;
+}
+#food-list div button{
+    padding: 1rem 10rem;
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 4px;
+    border: none;
+    margin: 1rem;
+    cursor: pointer;
+    background-color: #fbb900;
+    color: black;
+}
+#food-list div button:hover{
+    background-color:#dab54f ;
+}
+h3{
+    font-size: medium;
+    font-weight: 700;
+}
+#cart-list h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    margin: 2rem;
+    background-color: #fbb900;
+    padding: 2rem;
+    border-radius: 5px;
+}
+#cart-add{
+    background-color: #F9DEC9;
+    width: 80%;
+    /* height: 300px; */
+    margin: auto;
+    border-radius: 5px;
+    padding: 1rem;
+}
+#orderbtn button{
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    padding: 1rem 6rem;
+    display:block ;
+    margin: auto;
+    margin-top: 2rem;
+    cursor: pointer;
+    background-color: #fbb900;
+    border: none;
+    border-radius: 5px;
+
+}
+#orderbtn button:hover{
+    background-color:#dab54f ;
+}
+#order-store{
+    display: flex;
+}
+#order-store h2{
+    margin: auto;
+    margin-top: 2rem;
+    font-size: 2rem;
+    /* background-color: #f300fb; */
+    padding: 1.5rem;
+    border-radius: 5px;
 }

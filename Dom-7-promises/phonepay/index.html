@@ -8,7 +8,40 @@
     
 </head>
 <body>
-    <h1>Hello, due to some reason i cant complete assignment on time</h1>
+    <div id="main">
+        <div id="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLVCgnRC5v-dHr0bt0hnkEXhXDKwVT15Ly20k3oukUrA&s"alt="">
+        <h2>Payment System</h2>
+        </div>
+
+        <div id="box">
+            <div onclick="pay()"><h2>Pay</h2></div>
+            <div><h2>mobile recharge</h2></div>
+            <div><h2>Add balance</h2></div>
+            <div><h2>check balance</h2></div>
+        </div>
+    </div>
+
+    <!-- popup -->
+
+    <div id="popup1">
+        <label for="">Enter Mobile Number To Pay</label><br>
+        <input type="number" placeholder=" Enter Mobile Number"><br>
+        <label for="">Enter Money to Send</label><br>
+        <input type="number" placeholder="Enter Amount">
+        <button onclick="payNow()">Pay Now</button>       
+    </div>
+
+    <div id="popup1-process">
+        <h3>Your Transaction is processing...</h3>
+    </div>
+
+    <div id="popup1-sucess">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsvhnYIVZd6rR9HAoQUomlRf4dIgp1vOdn9A&usqp=CAU" alt="">
+        <h3>Transaction Successfull</h3>
+        <button onclick="ok()">OK</button>
+    </div>
+
 </body>
 <script src="index.js"></script>
 </html>
