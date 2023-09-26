@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>Local Storage</h1>
+    <div class="main">
+        <div class="form-container">
+            <form action="">
+                <label for="">Enter Your Name</label><br>
+                <input id="name" type="text" placeholder="Enter Name"><br>
+                <label for="">Enter Your Age</label><br>
+                <input id="age" type="number" placeholder="Enter Age"><br>
+                <button id="button">Submit</button> <br>
+            </form>
+        </div>
+
+        <!-- --------------table------------------->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <button onclick="retrieve()">Retrieve Data</button>
+            <button onclick="clearAll()">Clear All Data From Local Storage</button>
+        </div>
+    </div>
+</body>
+<script src="index.js"></script>
+
+</html>

@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Croissant+One&family=Martian+Mono:wght@200;300;400;500;600;700&family=Merriweather:wght@300;400;700&family=Noto+Sans:wght@400;500&family=Poppins:wght@300;400;500;600&family=Roboto+Slab:wght@300;400;500;600;700&family=Shadows+Into+Light&family=Signika+Negative:wght@300;400;500;600;700&display=swap");
+
+/* font-family: "Bree Serif", serif;
+font-family: "Croissant One", cursive;
+font-family: "Martian Mono", monospace;
+font-family: "Merriweather", serif;
+font-family: "Noto Sans", sans-serif;
+font-family: "Poppins", sans-serif;
+font-family: "Roboto Slab", serif;
+font-family: "Shadows Into Light", cursive;
+font-family: "Signika Negative", sans-serif; */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "poppins";
+}
+
+#main {
+  width: 20%;
+  margin: auto;
+  margin-top: 1rem;
+  padding: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+label {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+input {
+  margin-top: 0.2rem;
+  width: 100%;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.3rem;
+}
+input::placeholder {
+  font-weight: 500;
+}
+button {
+  width: 100%;
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 2.5rem;
+  border: none;
+  background-color: blueviolet;
+  font-weight: 500;
+  cursor: pointer;
+}
+#hero-section{
+  width: 60%;
+  height: auto;
+   margin: auto;
+   margin-top: 2rem;
+   display: grid;
+   grid-template-columns: repeat(3,1fr);
+   gap: 20px;
+   justify-content: center;
+   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+   padding: 1rem;
+   border-radius: 5px;
+   
+}
+.container{
+  /* background-color: #BEADFA; */
+  text-align: center;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  border-radius: 6px;
+  border: 1px solid rgb(255, 0, 0);
+  height: auto;
+}
+img{
+  width: 50%;
+  height: 50%;
+  margin-top: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  #main {
+    width: 80%;
+  }
+  #hero-section{
+    grid-template-columns: repeat(2,1fr);
+    width: 95%;
+  }
+}
