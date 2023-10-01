@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        #root{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+    <h1>Counter</h1>
+    <p>Count: <span id="count">0</span></p>
+    <button id="startStop">Start</button>
+    <button id="plus">Increment</button>
+    <button id="minus">Decrement</button>
+</div>
+    <script>
+        class Counter {
+            constructor() {
+                this.count = 0;
+                this.intervalId = null;
+                this.auto = false;
+                this.startStop = document.getElementById('startStop');
+                this.plus = document.getElementById('plus');
+                this.minus = document.getElementById('minus');
+                this.countDisplay = document.getElementById('count');
+            }
+
+            start() {
+                this.auto = true;
+                this.startStop.textContent = 'Stop';
+                this.intervalId = setInterval(() => {
+                    this.increment();
+                }, 1000);
+            }
+
+            stop() {
+                this.auto = false;
+                this.startStop.textContent = 'Start';
+                clearInterval(this.intervalId);
+            }
+
+            toggleCounter() {
+                if (this.auto) {
+                    this.stop();
+                } else {
+                    this.start();
+                }
+            }
+
+            increment() {
+                if (!this.auto) {
+                    this.stop();
+                }
+                this.count++;
+                this.updateDisplay();
+            }
+
+            decrement() {
+                if (!this.auto) {
+                    this.stop();
+                }
+                this.count--;
+                this.updateDisplay();
+            }
+
+            updateDisplay() {
+                this.countDisplay.textContent = this.count;
+            }
+
+            setupEventListeners() {
+                this.startStop.addEventListener('click', this.toggleCounter.bind(this));
+                this.plus.addEventListener('click', this.increment.bind(this));
+                this.minus.addEventListener('click', this.decrement.bind(this));
+            }
+        }
+
+        const counter = new Counter();
+        counter.setupEventListeners();
+    </script>
+</body>
+</html>
