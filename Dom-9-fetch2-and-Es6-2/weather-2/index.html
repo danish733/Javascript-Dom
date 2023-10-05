@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App2</title>
+    <style>
+      *{
+        font-family: Arial, Helvetica, sans-serif;
+      }
+        body div:nth-child(1) {
+            text-align: center;
+        }
+
+        input,
+        button {
+            margin: 10px;
+            padding: 5px;
+            font-size: 1.2rem;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        input {
+            font-weight: 550;
+            background-color: #ee9322;
+            text-transform: capitalize;
+            border: none;
+            padding: 8px 13px;
+            border-radius: 3px;
+        }
+
+        input::placeholder {
+            color: black;
+        }
+
+        button {
+            cursor: pointer;
+            padding: 8px 13px;
+            border: none;
+            background-color: rgba(233, 128, 29, 0.838);
+            font-weight: 550;
+            border-radius: 6px;
+        }
+
+        button:hover {
+            background-color: #219c90;
+        }
+
+        #weather-container {
+            display: flex;
+            justify-content: space-around;
+            margin: auto;
+            margin-top: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        #weather-container div:nth-child(1) {
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+        }
+
+        #weather-container div:nth-child(2) {
+            width: 43%;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
+
+        #weather-details h2 {
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            padding: 1.5rem;
+        }
+
+        #weather-details p {
+            text-align: left;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            padding: 0 1.5rem;
+        }
+        #forecast-container{
+         
+          display: flex;
+          /* background-color:rgba(233, 128, 29, 0.838); */
+          margin: auto;
+          justify-content: space-around;
+        }
+        #forecast-container div{
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+          border: 2px solid black;
+          background-color: #219c90;
+          padding: 1rem;
+          border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="cityInput" placeholder="Enter City Name" />
+        <button onclick="search()">Search Now</button>
+    </div>
+
+    <div id="weather-container">
+        <div id="weather-details"></div>
+        <div id="map-container"></div>
+    </div>
+
+    <div id="forecast-container">
+    </div>
+</body>
+<script>
+    async function search() {
+        try {
+            const cityInput = document.getElementById("cityInput").value;
+            const apiKey = "ba01385cc7fb59f89f36b7bdbfc5dfe4";
+
+            const weatherApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}`;
+
+            const forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${cityInput}&appid=${apiKey}&units=metric`;
+
+            let response = await fetch(weatherApiUrl);
+            let data = await response.json();
+
+            let weatherDetails = document.getElementById("weather-details");
+
+            weatherDetails.innerHTML = `
+                <h2>${data.name}, ${data.sys.country}</h2>
+                <p>Temperature: ${data.main.temp}&deg;C</p>
+                <p>Min Temperature: ${data.main.temp_min}&deg;C</p>
+                <p>Max Temperature: ${data.main.temp_max}&deg;C</p>
+                <p>Wind Speed: ${data.wind.speed} m/s</p>
+                <p>Cloudiness: ${data.weather[0].description}</p>
+            `;
+
+            // Embed Weather Map (OpenStreetMap example)
+            const mapContainer = document.getElementById("map-container");
+            mapContainer.innerHTML = `
+                <iframe
+                    width="100%"
+                    height="500"
+                    frameborder="0"
+                    style="border:0"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=${data.coord.lon - 2},${data.coord.lat - 2},${data.coord.lon + 2},${data.coord.lat + 2}&layer=mapnik">
+                </iframe>
+            `;
+
+            // Fetch and display forecast data
+            let forecastResponse = await fetch(forecastApiUrl);
+            let forecastData = await forecastResponse.json();
+            displayForecast(forecastData);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function displayForecast(forecastData) {
+        const forecastContainer = document.getElementById("forecast-container");
+        forecastContainer.innerHTML = ""; // Clear existing content
+
+        // Extract and display the forecast for the next 5 days
+        for (let i = 0; i < 5; i++) {
+            const forecast = forecastData.list[i * 8]; // Data for every 24 hours
+            const date = new Date(forecast.dt * 1000); // Convert timestamp to date
+
+            const forecastCard = document.createElement("div");
+            forecastCard.classList.add("forecast-card");
+            forecastCard.innerHTML = `
+                <h3>${date.toDateString()}</h3>
+                <p>Temperature: ${forecast.main.temp}&deg;C</p>
+                <p>Min Temperature: ${forecast.main.temp_min}&deg;C</p>
+                <p>Max Temperature: ${forecast.main.temp_max}&deg;C</p>
+                <p>Wind Speed: ${forecast.wind.speed} m/s</p>
+                <p>Cloudiness: ${forecast.weather[0].description}</p>
+            `;
+
+            forecastContainer.appendChild(forecastCard);
+        }
+    }
+</script>
+</html>
+
+
+
