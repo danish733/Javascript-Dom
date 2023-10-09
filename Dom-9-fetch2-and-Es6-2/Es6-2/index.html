@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Array</title>
+</head>
+<body>
+    <script>
+        function myArray(...arguments){
+            this.length = arguments.length
+            for (let i = 0; i < arguments.length; i++) {
+                this[i] = arguments[i];
+            }
+        }
+        myArray.prototype.push = function(element){
+            this[this.length] = element
+            this.length++
+        }
+        myArray.prototype.pop = function(){
+            this.length--
+            return delete [this.length-1]  
+        }
+        myArray.prototype.top = function(){
+            return this[this.length-1]
+        }
+        myArray.prototype.print = function(){
+            let bag = ""
+            for(let i=0;i<this.length;i++){
+                bag+= ` ${this[i]}`
+            }
+            return bag
+        }
+        myArray.prototype.reverse = function () {
+        let bag = "";
+        for (let i = this.length - 1; i >= 0; i--) {
+          bag += ` ${this[i]}`;
+        }
+        return bag;
+      }
+       myArray.prototype.realSize = function(){
+        return this.length
+       }
+
+        let myArray1 = new myArray(1,2,3,4)
+        console.log(myArray1)
+        myArray1.push(5)
+        console.log(myArray1.pop())
+        console.log(myArray1.print())
+        console.log(myArray1.reverse())
+        console.log(myArray1.realSize())
+    </script>
+</body>
+</html>
