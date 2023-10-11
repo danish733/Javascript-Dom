@@ -9,5 +9,3 @@ function display() {
 }
 
 export default display;
-
-// #this file name is display.js 
